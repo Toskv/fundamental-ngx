@@ -18,6 +18,7 @@ import * as datePickerRangeDisableH from '!raw-loader!./examples/date-picker-ran
 import { ExampleFile } from '../../../documentation/core-helpers/code-example/example-file';
 import { DocsSectionTitleComponent } from '../../../documentation/core-helpers/docs-section-title/docs-section-title.component';
 import { ActivatedRoute } from '@angular/router';
+import { StackblitzDependencies } from '../../../documentation/core-helpers/stackblitz/stackblitz-dependencies';
 
 @Component({
     selector: 'app-date-picker',
@@ -151,5 +152,8 @@ export class DatePickerDocsComponent implements OnInit {
         },
     ];
 
-    ngOnInit() { }
+    ngOnInit() {
+        console.log(StackblitzDependencies.GetDependencies());
+
+    }
 }
