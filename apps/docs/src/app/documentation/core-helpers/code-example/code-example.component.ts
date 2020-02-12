@@ -14,6 +14,7 @@ import { ExampleFile } from './example-file';
 import { height } from '../../utilities/animations/collapse';
 import { AlertService } from '@fundamental-ngx/core';
 import hljs from 'highlight.js/lib';
+import { StackblitzService } from '../stackblitz/stackblitz.service';
 
 
 @Component({
@@ -21,7 +22,7 @@ import hljs from 'highlight.js/lib';
     templateUrl: './code-example.component.html',
     styleUrls: ['./code-example.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    animations: [height({ time: 200 })]
+    animations: [height({ time: 200 })],
 })
 export class CodeExampleComponent implements OnInit, AfterViewInit {
 
@@ -37,8 +38,16 @@ export class CodeExampleComponent implements OnInit, AfterViewInit {
 
     isOpen: boolean = false;
 
-    constructor(private element: ElementRef, private copyService: CopyService, private alertService: AlertService) { }
+    constructor(
+        private element: ElementRef,
+        private copyService: CopyService,
+        private alertService: AlertService,
+        private stackBlitzService: StackblitzService
+    ) {}
 
+    openStackBlitz(): void {
+        this.stackBlitzService.openCode(this.exampleFiles);
+    }
 
     get expandIcon(): string {
         return this.isOpen ? 'navigation-up-arrow' : 'navigation-down-arrow';

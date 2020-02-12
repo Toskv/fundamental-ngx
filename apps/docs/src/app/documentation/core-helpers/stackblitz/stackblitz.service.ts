@@ -4,10 +4,11 @@ import sdk from '@stackblitz/sdk';
 import { StackblitzParameters } from './interfaces/stackblitz-parameters';
 import { StackblitzDependencies } from './stackblitz-dependencies';
 import { StackblitzProject } from './interfaces/stackblitz-project';
-import { Inject } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Libraries } from '../../utilities/libraries';
 import { ExampleFile } from '../code-example/example-file';
 
+@Injectable()
 export class StackblitzService {
 
     constructor (
@@ -29,16 +30,16 @@ export class StackblitzService {
         };
     };
 
-    app_app_component = ``;
-
-    openCode(): void {
+    openCode(exampleFiles: ExampleFile[]): void {
 
         const defaultProjectInfo = this.defaultProjectInfo;
 
+        if (exampleFiles.length === 1) {
 
-        this.exampleFiles.forEach((example: ExampleFile) => {
+        }
+        const parameters = this.getParameters(exampleFiles.find(file => file.language === 'html').fileName);
 
-            const parameters = this.getParameters(example.fileName);
+        exampleFiles.forEach((example: ExampleFile) => {
 
             if (example.entryComponent !== undefined) {
                 parameters.app_module_entryComponents = example.entryComponent;
@@ -52,54 +53,48 @@ export class StackblitzService {
 
             if (example.language === 'html') {
                 const _pathHTML = this.getFilePath(example.fileName, 'html');
-                this.project.files[_pathHTML] = example.code.default;
-                const _pathSCSS = `src/app/${example.fileName}.component.scss`;
-                this.project.files[_pathSCSS] = '';
-                if (example.scssFileCode) {
-                    this.project.files[_pathSCSS] = example.scssFileCode.default;
-                }
+                defaultProjectInfo.files[_pathHTML] = example.code.default;
+                const _pathSCSS = this.getFilePath(example.fileName, 'scss');
+                defaultProjectInfo.files[_pathSCSS] = example.scssFileCode ? example.scssFileCode.default : '';
+
                 if (example.secondFile) {
-                    const _pathTS = `src/app/${example.secondFile}.component.ts`;
-                    parameters.app_component_basis = example.secondFile + '.component';
-
-                    //TODO Get Template
+                    const _pathTS = this.getFilePath(example.secondFile, 'ts');
+                    defaultProjectInfo.files[_pathTS] = this.getDefaultTypescriptFile(example.secondFile);
                 } else if (example.typescriptFileCode) {
-                    const _pathTS = `src/app/${example.fileName}.component.ts`;
-                    this.project.files[_pathTS] = example.typescriptFileCode.default;
+                    const _pathTS = this.getFilePath(example.fileName, 'ts');
+                    defaultProjectInfo.files[_pathTS] = example.typescriptFileCode.default;
                 }
             }
-            if (example.language === 'typescript' && (example.secondFile === undefined && example.thirdFile === undefined)) {
-                const _pathTS = `src/app/${example.fileName}.component.ts`;
-                this.project.files[_pathTS] = example.code.default;
-            }
-            // tslint:disable-next-line: max-line-length
-            else if (example.language === 'typescript' && (example.secondFile !== undefined && example.thirdFile === undefined)) {
-                const _pathTS2 = `src/app/${example.secondFile}.component.ts`;
-                this.project.files[_pathTS2] = example.code.default;
 
+            if (example.language === 'typescript') {
+                let pathTs: string;
+                if (example.thirdFile) {
+                    pathTs = this.getFilePath(example.thirdFile, 'ts');
+                } else if (example.secondFile) {
+                    pathTs = this.getFilePath(example.secondFile, 'ts');
+                } else {
+                    pathTs = this.getFilePath(example.fileName, 'ts');
+                }
+                defaultProjectInfo.files[pathTs] = example.code.default
             }
-            // tslint:disable-next-line: max-line-length
-            else if (example.language === 'typescript' && (example.thirdFile !== undefined && example.secondFile === undefined)) {
-                const _pathTS2 = `src/app/${example.thirdFile}.component.ts`;
-                this.project.files[_pathTS2] = example.code.default;
-
-            }
-            this.project.files['src/app/app.module.ts'] = ''
         });
 
-        this.project.files['src/index.html'] = `
-        <link rel="stylesheet" href="node_modules/fundamental-styles/dist/fonts.css"></link>
-        <link rel="stylesheet" href="node_modules/fundamental-styles/dist/icon.css"></link>
-        <${this.parameters.html_tag}></${this.parameters.html_tag}>
+        defaultProjectInfo.files['src/app/app.module.ts'] = this.getModule(parameters);
+
+        defaultProjectInfo.files['src/index.html'] = `
+            <link rel="stylesheet" href="node_modules/fundamental-styles/dist/fonts.css"></link>
+            <link rel="stylesheet" href="node_modules/fundamental-styles/dist/icon.css"></link>
+            <${parameters.html_tag}></${parameters.html_tag}>
         `;
 
 
-        sdk.openProject(this.project);
+        sdk.openProject(<any>defaultProjectInfo);
     }
 
     private getDefaultTypescriptFile(fileName: string): string {
 
         const libraryPrefix = this.getLibraryPrefix();
+        const componentName: string = this.transformSnakeCaseToPascalCase(fileName);
 
         return `import { Component } from '@angular/core';
 
@@ -108,7 +103,7 @@ export class StackblitzService {
                 templateUrl: './${fileName}.component.html',
                 styleUrls: ['./${fileName}.component.scss']
             })
-            export class ${example.component} {}`
+            export class ${componentName} {}`
         ;
     }
 
@@ -122,14 +117,6 @@ export class StackblitzService {
 
     private getFilePath(fileName: string, extension: string): string {
         return ('src/app/' + fileName + '.component.' + extension);
-    }
-
-    private addFile (
-        defaultProjectInfo: StackblitzProject,
-        fileName: string,
-        extension: string
-    ): void {
-
     }
 
     /** this function transform that-word, or that_word to ThatWord */
@@ -165,6 +152,8 @@ export class StackblitzService {
             })
             export class ${parameters.app_component} {}
         `;
+
+        return parameters;
     }
 
     private getModule(parameters: StackblitzParameters): string {
@@ -175,11 +164,9 @@ export class StackblitzService {
                 import { FundamentalNgxCoreModule } from '@fundamental-ngx/core';
                 import { FundamentalNgxPlatformModule } from '@fundamental-ngx/platform';
                 import { HttpClientModule, HttpClient } from '@angular/common/http';
-                import { HttpModule } from '@angular/http';
-                import { MatTableModule } from '@angular/material';
-                import {CdkTableModule } from '@angular/cdk/table';
+                import { CdkTableModule } from '@angular/cdk/table';
                 import { DragDropModule } from '@angular/cdk/drag-drop';
-                import {RouterModule, Routes} from '@angular/router'
+                import {RouterModule, Routes} from '@angular/router';
                 import { ${parameters.app_component} } from './${parameters.app_component_basis}';
                 ${parameters.app_module_imports}
 
@@ -191,12 +178,9 @@ export class StackblitzService {
                     BrowserModule,
                     FormsModule,
                     HttpClientModule,
-                    MatTableModule,
                     DragDropModule,
                     RouterModule.forRoot([{path: '#', component:${parameters.app_component}}],
                     { useHash: true }),
-                    CdkTableModule,
-                    HttpModule,
                     ReactiveFormsModule,
                     FundamentalNgxCoreModule,
                     FundamentalNgxPlatformModule,

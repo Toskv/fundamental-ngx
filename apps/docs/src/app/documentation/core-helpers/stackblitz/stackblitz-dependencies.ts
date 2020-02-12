@@ -12,7 +12,6 @@ export class StackblitzDependencies {
         'moment',
         '@angular/animations',
         '@angular/cdk',
-        '@angular/http',
         'popper.js',
         'tslib'
     ];

@@ -4,7 +4,6 @@ export interface ExampleFile {
     };
     name?: string;
     language?: string;
-    tagname?: string;
     typescriptFileCode?: {
         default: string
     };
