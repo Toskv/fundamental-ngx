@@ -9,7 +9,10 @@ export interface ExampleFile {
     language: string;
     fileName?: string;
     entryComponent?: boolean;
-    componentName?: string;
-    selectorName?: string;
+    component?: string;
     main?: boolean;
+    name?: string;
+    typescriptFileCode?: {
+        default: string
+    };
 }

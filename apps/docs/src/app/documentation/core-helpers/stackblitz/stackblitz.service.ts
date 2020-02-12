@@ -41,19 +41,27 @@ export class StackblitzService {
             const mainComponent: boolean = exampleFiles.length === 1 || example.main;
 
             if (example.language === 'html') {
+
                 const _pathHTML = this.getFilePath(example.fileName, 'html');
                 defaultProjectInfo.files[_pathHTML] = example.code.default;
                 const _pathSCSS = this.getFilePath(example.fileName, 'scss');
-                defaultProjectInfo.files[_pathSCSS] = example.scssFileCode ? example.scssFileCode.default : '';
 
-                if (example.standalone || exampleFiles.length === 1) {
+                if (example.scssFileCode || !defaultProjectInfo.files[_pathSCSS]) {
+                    defaultProjectInfo.files[_pathSCSS] = example.scssFileCode ? example.scssFileCode.default : '';
+                }
+
+                if (example.standalone || exampleFiles.length === 1 || example.typescriptFileCode) {
+
                     const _pathTS = this.getFilePath(example.fileName, 'ts');
-                    defaultProjectInfo.files[_pathTS] = this.getDefaultTypescriptFile(example.fileName);
+
+                    if (example.typescriptFileCode) {
+                        defaultProjectInfo.files[_pathTS] = example.typescriptFileCode.default;
+                    } else {
+                        defaultProjectInfo.files[_pathTS] = this.getDefaultTypescriptFile(example.fileName);
+                    }
 
                     stackBlitzFiles.push(
                         this.getStackBlitzTsFile(
-                            _pathTS,
-                            this.transformSnakeCaseToPascalCase(example.fileName),
                             example,
                             mainComponent
                         )
@@ -71,16 +79,12 @@ export class StackblitzService {
 
                 stackBlitzFiles.push(
                     this.getStackBlitzTsFile(
-                        _pathTS,
-                        example.componentName,
                         example,
                         mainComponent
                     )
                 );
             }
         });
-
-        console.log(stackBlitzFiles);
 
         defaultProjectInfo.files['src/app/app.module.ts'] = this.getModule(stackBlitzFiles);
 
@@ -141,11 +145,13 @@ import { Component } from '@angular/core';
     }
 
     private getStackBlitzTsFile(
-        path: string,
-        componentName: string,
         example: ExampleFile,
         mainComponent: boolean
     ): StackblitzFile {
+
+        const path = this.getFilePath(example.fileName, 'ts');
+        const componentName = example.component || this.transformSnakeCaseToPascalCase(example.fileName);
+
         return {
             path: path,
             componentName: componentName,

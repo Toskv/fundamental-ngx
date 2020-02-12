@@ -75,6 +75,7 @@ myDisableFunction = function(d: FdDate): boolean {
             name: 'Example Block/Disable Functions'
         },
         {
+            component: 'CalendarSingleExampleComponent',
             language: 'typescript',
             fileName: 'calendar-single-example',
             code: calendarSingleSrc
@@ -122,9 +123,13 @@ myDisableFunction = function(d: FdDate): boolean {
             language: 'html',
             fileName: 'calendar-form-example',
             code: calendarFormSourceH,
-            component: 'CalendarFormExamplesComponent',
-            typescriptFileCode: calendarFormSourceT,
             scssFileCode: calendarFormSourceScss
+        },
+        {
+            language: 'typescript',
+            fileName: 'calendar-form-example',
+            code: calendarFormSourceT,
+            component: 'CalendarFormExamplesComponent',
         }
     ];
 

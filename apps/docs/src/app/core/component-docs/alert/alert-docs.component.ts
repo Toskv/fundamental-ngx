@@ -92,14 +92,14 @@ export class AlertDocsComponent implements OnInit {
             language: 'typescript',
             fileName: 'alert-component-as-content-example',
             code: alertComponentAsContentExample,
-            componentName: 'AlertComponentAsContentExampleComponent',
+            component: 'AlertComponentAsContentExampleComponent',
             entryComponent: true
         },
         {
             language: 'typescript',
             code: alertContent,
             fileName: 'alert-content',
-            componentName: 'AlertContentComponent',
+            component: 'AlertContentComponent',
             entryComponent: true
         }
     ];
@@ -107,7 +107,7 @@ export class AlertDocsComponent implements OnInit {
     alertInlineExample: ExampleFile[] = [
         {
             language: 'html',
-            componentName: 'AlertInlineExampleComponent',
+            component: 'AlertInlineExampleComponent',
             scssFileCode: alertInlineExampleScs,
             fileName: 'alert-inline-example',
             code: alertInlineExampleHtml,
@@ -117,7 +117,7 @@ export class AlertDocsComponent implements OnInit {
     alertWidthExample: ExampleFile[] = [
         {
             language: 'html',
-            componentName: 'AlertWidthExampleComponent',
+            component: 'AlertWidthExampleComponent',
             code: alertWidthExampleHtml,
             fileName: 'alert-width-example',
             scssFileCode: alertWidthExampleScss
