@@ -2,19 +2,14 @@ export interface ExampleFile {
     code: {
         default: string
     };
-    name?: string;
-    language?: string;
-    typescriptFileCode?: {
-        default: string
-    };
     scssFileCode?: {
         default: string
     };
-    secondFile?: string;
-    thirdFile?: string;
-    component?: string;
+    standalone?: boolean;
+    language: string;
     fileName?: string;
-    entryComponent?: string;
-    declarationArray?: string;
-    imports?: string;
+    entryComponent?: boolean;
+    componentName?: string;
+    selectorName?: string;
+    main?: boolean;
 }

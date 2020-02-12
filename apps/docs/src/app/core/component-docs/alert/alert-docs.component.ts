@@ -75,10 +75,8 @@ export class AlertDocsComponent implements OnInit {
         {
             language: 'html',
             scssFileCode: alertExampleScs,
-            component: 'AlertExampleComponent',
             fileName: 'alert-example',
             code: alertExampleHtml,
-            typescriptFileCode: alertExampleTs,
         },
 
     ];
@@ -94,39 +92,34 @@ export class AlertDocsComponent implements OnInit {
             language: 'typescript',
             fileName: 'alert-component-as-content-example',
             code: alertComponentAsContentExample,
-            component: 'AlertComponentAsContentExampleComponent',
-            entryComponent: 'AlertContentComponent, AlertComponentAsContentExampleComponent',
-            declarationArray: 'AlertContentComponent',
-            imports: `import { AlertContentComponent } from './alert-content.component';`
-
+            componentName: 'AlertComponentAsContentExampleComponent',
+            entryComponent: true
         },
         {
             language: 'typescript',
             code: alertContent,
-            name: 'Alert Content',
             fileName: 'alert-content',
-            secondFile: 'alert-content'
+            componentName: 'AlertContentComponent',
+            entryComponent: true
         }
     ];
 
     alertInlineExample: ExampleFile[] = [
         {
             language: 'html',
-            component: 'AlertInlineExampleComponent',
+            componentName: 'AlertInlineExampleComponent',
             scssFileCode: alertInlineExampleScs,
             fileName: 'alert-inline-example',
             code: alertInlineExampleHtml,
-            typescriptFileCode: alertInlineExampleTs
         }
     ];
 
     alertWidthExample: ExampleFile[] = [
         {
             language: 'html',
-            component: 'AlertWidthExampleComponent',
+            componentName: 'AlertWidthExampleComponent',
             code: alertWidthExampleHtml,
             fileName: 'alert-width-example',
-            typescriptFileCode: alertWidthExampleTs,
             scssFileCode: alertWidthExampleScss
         }
     ];
