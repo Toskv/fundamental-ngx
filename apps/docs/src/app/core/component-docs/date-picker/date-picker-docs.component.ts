@@ -142,13 +142,13 @@ export class DatePickerDocsComponent implements OnInit {
             language: 'typescript',
             component: 'DatePickerComplexI18nExampleComponent',
             code: datePickerComplexI18nSrcTs,
-            fileName: 'fd-date-picker-complex-i18n-example'
+            fileName: 'date-picker-complex-i18n-example'
         },
         {
             language: 'html',
             component: 'DatePickerComplexI18nExampleComponent',
             code: datePickerComplexI18nSrcH,
-            fileName: 'fd-date-picker-complex-i18n-example'
+            fileName: 'date-picker-complex-i18n-example'
         },
     ];
 

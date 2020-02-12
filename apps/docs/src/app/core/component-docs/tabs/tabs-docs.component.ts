@@ -139,7 +139,6 @@ export class TabsDocsComponent implements OnInit {
             component: 'TabsExampleComponent',
             code: tabSrc,
             fileName: 'tabs-example',
-            secondFile: 'tabs-examples',
             typescriptFileCode: tabsTsCode,
         }
     ];
@@ -150,7 +149,6 @@ export class TabsDocsComponent implements OnInit {
             component: 'TabCounterComponent',
             code: tabCounter,
             fileName: 'fd-tab-counter-example',
-            secondFile: 'fd-tab-counter-example',
             typescriptFileCode: tabCounterTs
         }
     ];
@@ -161,7 +159,6 @@ export class TabsDocsComponent implements OnInit {
             component: 'TabProcessExampleComponent',
             code: tabProcess,
             fileName: 'fd-tab-process-example',
-            secondFile: 'fd-tab-process-example',
             typescriptFileCode: tabProcessTs
         }
     ];
@@ -172,7 +169,6 @@ export class TabsDocsComponent implements OnInit {
             component: 'TabIconExampleComponent',
             code: tabIcon,
             fileName: 'fd-tab-icon-example',
-            secondFile: 'fd-tab-icon-example',
             typescriptFileCode: tabIconTs
         }
     ];
@@ -183,7 +179,6 @@ export class TabsDocsComponent implements OnInit {
             component: 'TabFilterExampleComponent',
             code: tabFilter,
             fileName: 'fd-tab-filter-example',
-            secondFile: 'fd-tab-filter-example',
             typescriptFileCode: tabFilterTs
         }
     ];
@@ -208,7 +203,6 @@ export class TabsDocsComponent implements OnInit {
             language: 'html',
             code: tabSelectionSrc,
             fileName: 'tab-selection-example',
-            secondFile: 'tabs-examples',
             typescriptFileCode: tabsTsCode,
             component: 'TabSelectionExampleComponent',
             scssFileCode: tabSelectionScss

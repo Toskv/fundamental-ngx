@@ -21,7 +21,6 @@ export class TextareaDocsComponent implements OnInit {
             language: 'html',
             code: formHtml,
             fileName: 'textarea-example',
-            secondFile: 'textarea-examples',
             typescriptFileCode: textareaTscode,
             component: 'TextareaExampleComponent'
         }
@@ -32,7 +31,6 @@ export class TextareaDocsComponent implements OnInit {
             language: 'html',
             code: formInlineHelpHtml,
             fileName: 'textarea-inline-help-example',
-            secondFile: 'textarea-examples',
             typescriptFileCode: textareaTscode,
             component: 'TextareaInlineHelpExampleComponent'
         }
@@ -43,7 +41,6 @@ export class TextareaDocsComponent implements OnInit {
             language: 'html',
             code: formStateHtml,
             fileName: 'textarea-state-example',
-            secondFile: 'textarea-examples',
             typescriptFileCode: textareaTscode,
             component: 'TextareaStateExampleComponent'
         }
