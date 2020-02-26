@@ -51,6 +51,10 @@ import { PlatformMenuGroupExampleComponent } from './component-docs/platform-men
 import { PlatformMenuIconsExampleComponent } from './component-docs/platform-menu/platform-menu-examples/platform-menu-icons-example.component';
 import { PlatformMenuClickCloseExampleComponent } from './component-docs/platform-menu/platform-menu-examples/platform-menu-click-close-example.component';
 
+import { PlatformMenuButtonHeaderComponent } from './component-docs/platform-menu-button/platform-menu-button-header/platform-menu-button-header.component';
+import { PlatformMenuButtonStandardExampleComponent } from './component-docs/platform-menu-button/platform-menu-button-examples/platform-menu-button-examples.component';
+import { PlatformMenuButtonDocsComponent } from './component-docs/platform-menu-button/platform-menu-button-docs.component';
+
 import { PlatformSelectDocsComponent } from './component-docs/platform-select/platform-select-docs.component';
 import { PlatformSelectHeaderComponent } from './component-docs/platform-select/platform-select-header/platform-select-header.component';
 import { PlatformSelectTypesDefaultExampleComponent } from './component-docs/platform-select/platform-select-examples/platform-select-types-default-example.component';
@@ -97,6 +101,9 @@ import { StackblitzService } from '../documentation/core-helpers/stackblitz/stac
         PlatformMenuIconsExampleComponent,
         PlatformMenuComplexExampleComponent,
         PlatformMenuClickCloseExampleComponent,
+        PlatformMenuButtonDocsComponent,
+        PlatformMenuButtonHeaderComponent,
+        PlatformMenuButtonStandardExampleComponent,
         NewComponentComponent,
         PlatformSelectDocsComponent,
         PlatformSelectHeaderComponent,
