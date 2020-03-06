@@ -15,6 +15,12 @@ export type stateType = 'valid' | 'invalid' | 'warning' | 'default' | 'informati
 })
 export class RadioGroupComponent extends BaseInput {
     @Input()
+    name: string;
+
+    @Input()
+    compact: boolean = false;
+
+    @Input()
     state: stateType = 'default';
 
     @Input()

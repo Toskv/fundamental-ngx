@@ -10,4 +10,4 @@ import { RadioGroupComponent } from './radio-group/radio-group.component';
     entryComponents: [RadioGroupComponent],
     exports: [RadioGroupComponent]
 })
-export class FdpFormModule {}
+export class PlatformFormModule {}

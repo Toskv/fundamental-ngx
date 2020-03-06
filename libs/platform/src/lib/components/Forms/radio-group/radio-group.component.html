@@ -2,7 +2,7 @@
     <div fd-form-item *ngIf="hasNoValue">
         <fd-radio-button
             fd-form-control
-            name="name"
+            [name]="name"
             [value]="'None'"
             [state]="state"
             [compact]="compact"
