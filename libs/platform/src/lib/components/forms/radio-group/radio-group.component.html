@@ -1,7 +1,6 @@
 <fd-form-group [isInline]="isInline">
     <div fd-form-item *ngIf="hasNoValue">
         <fd-radio-button
-            fd-form-control
             [name]="name"
             [value]="'None'"
             [state]="state"
@@ -16,7 +15,6 @@
 
     <div fd-form-item *ngFor="let item of list">
         <fd-radio-button
-            fd-form-control
             [name]="item.name ? item.name : name"
             [value]="item.value ? item.value : item"
             [state]="item.state ? item.state : state"
