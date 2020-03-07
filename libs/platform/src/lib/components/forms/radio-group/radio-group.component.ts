@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, Optional, Self } from '@angular/core';
-import { FormFieldControl } from '../form-control';
 import { NgControl, NgForm } from '@angular/forms';
 import { BaseInput } from '../base.input';
 import { SelectItem } from '../data-model';
@@ -11,7 +10,6 @@ export type stateType = 'valid' | 'invalid' | 'warning' | 'default' | 'informati
     templateUrl: 'radio-group.component.html',
     styleUrls: ['./radio-group.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [{ provide: FormFieldControl, useExisting: RadioGroupComponent, multi: true }]
 })
 export class RadioGroupComponent extends BaseInput {
     @Input()
