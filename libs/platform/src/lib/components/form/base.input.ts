@@ -30,7 +30,6 @@ let randomId = 0;
  * Usually try to fire stateChange only for things that can change dynamically in runtime. We don't expect
  * that e.g. placeholder will change after component is created
  */
-
 export abstract class BaseInput implements FormFieldControl<any>, ControlValueAccessor,
     OnInit, OnChanges, DoCheck, AfterViewInit, OnDestroy {
 
@@ -96,6 +95,7 @@ export abstract class BaseInput implements FormFieldControl<any>, ControlValueAc
     abstract get value(): any;
 
     abstract set value(value: any);
+
 
     /**
      * Reference to internal Input element
@@ -250,6 +250,7 @@ export abstract class BaseInput implements FormFieldControl<any>, ControlValueAc
         }
     }
 
+
     protected setValue(value: any) {
         if (value !== this._value) {
             this.writeValue(value);
@@ -261,3 +262,4 @@ export abstract class BaseInput implements FormFieldControl<any>, ControlValueAc
         return this._value;
     }
 }
+
