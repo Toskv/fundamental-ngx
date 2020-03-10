@@ -26,4 +26,10 @@
             {{ item.label ? item.label : item }}
         </fd-radio-button>
     </div>
+
+    <ng-container *ngTemplateOutlet="radios"></ng-container>
 </fd-form-group>
+
+<ng-template #radios>
+    <ng-content></ng-content>
+</ng-template>

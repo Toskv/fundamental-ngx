@@ -1,5 +1,5 @@
 <form [formGroup]="customForm" class="flex-form">
-    <p>Example 1: Radio Groups Example</p>
+    <p>Example 5: Radio Groups Example</p>
     <fieldset fd-fieldset>
         <fdp-radio-group
             [id]="'radio1'"
@@ -8,11 +8,11 @@
             [isInline]="false"
             [compact]="compact"
             [state]="state"
-            formControlName="example1"
+            formControlName="example5"
         >
         </fdp-radio-group>
     </fieldset>
-    <p>Example 2: Radio Groups with No Value</p>
+    <p>Example 6: Radio Groups with No Value</p>
     <fieldset fd-fieldset>
         <fdp-radio-group
             [id]="'radio2'"
@@ -23,13 +23,14 @@
             [state]="state"
             [hasNoValue]="true"
             [noValueLabel]="noValueLabel"
-            formControlName="example2"
+            formControlName="example6"
         >
         </fdp-radio-group>
     </fieldset>
 </form>
+
 <div>
-    Example 1: {{ customForm.value.example1 }}
+    Example 5: {{ customForm.get('example5').value }}
     <br />
-    Example 2: {{ customForm.value.example2 }}
+    Example 6: {{ customForm.get('example6').value }}
 </div>

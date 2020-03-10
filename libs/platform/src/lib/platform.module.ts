@@ -7,8 +7,7 @@ import { ActionBarModule } from './components/action-bar/action-bar.module';
 import { FdpMenuModule } from './components/menu/menu.module';
 import { PlatformSelectModule } from './components/select/select.module';
 import { PlatformLinkModule } from './components/link/link.module';
-import { PlatformFormModule } from './components/forms/fdp-form.module';
-
+import { PlatformRadioGroupModule } from './components/forms/radio-group/radio-group.module';
 @NgModule({
     imports: [CommonModule, FundamentalNgxCoreModule],
     exports: [
@@ -18,7 +17,7 @@ import { PlatformFormModule } from './components/forms/fdp-form.module';
         FdpMenuModule,
         PlatformSelectModule,
         PlatformLinkModule,
-        PlatformFormModule
+        PlatformRadioGroupModule
     ]
 })
 export class FundamentalNgxPlatformModule {}

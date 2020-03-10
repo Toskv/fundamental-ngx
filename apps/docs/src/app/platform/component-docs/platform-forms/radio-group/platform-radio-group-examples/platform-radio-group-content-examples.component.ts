@@ -3,10 +3,10 @@ import { FormGroup, FormControl } from '@angular/forms';
 
 
 @Component({
-    selector: 'fdp-platform-radio-group-list-example',
-    templateUrl: './platform-radio-group-list-example.component.html'
+    selector: 'fdp-platform-radio-group-content-example',
+    templateUrl: './platform-radio-group-content-example.component.html'
 })
-export class PlatformRadioGroupListExampleComponent {
+export class PlatformRadioGroupContentExampleComponent {
     options = ['Option 1', 'Option 2', 'Option 3'];
     name = 'option';
     compact = '';
@@ -19,7 +19,6 @@ export class PlatformRadioGroupListExampleComponent {
     seasons: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
 
     customForm = new FormGroup({
-        example5: new FormControl(''),
-        example6: new FormControl(''),
+        example7: new FormControl('')
     });
 }

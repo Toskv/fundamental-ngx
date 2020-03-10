@@ -16,14 +16,16 @@ import { FormFieldControl } from './form-control';
 import { ControlValueAccessor, FormControl, NgControl, NgForm } from '@angular/forms';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Subject } from 'rxjs';
-import { isSelectItem } from './data-model';
-import { isFunction, isJsObject } from './lang';
 
 let randomId = 0;
 
 /**
  * All form components share the same information (value, name, placeholder,.. ) as well as
  * the same behavior given by ControlValueAccessor.
+ *
+ * Even this is not ideal solution there is no other way then use inheritance to reuse some of the
+ * common logic. It should be possible to use some kind of compositions with Proxies but something
+ * similar that exists in Aspect Oriented Programing.
  *
  */
 export abstract class BaseInput
@@ -85,22 +87,6 @@ export abstract class BaseInput
     compact: boolean = false;
 
     /**
-     * Used in filters and any kind of comparators when we work with objects and this identify
-     * unique field name based on which we are going to do the job
-     */
-    @Input()
-    lookupKey: string;
-
-    /**
-     * When we deal with unknown object we use use this Input to retrieve value from specific
-     * property of the object.
-     *
-     * @See ComboBox, Select, RadioGroup, CheckBox Group
-     */
-    @Input()
-    displayKey: string;
-
-    /**
      * Tell  the component if we are in editing mode.
      *
      */
@@ -144,6 +130,7 @@ export abstract class BaseInput
     // @formatter:off
     onChange = (_: any) => {};
     onTouched = () => {};
+
     // @formatter:on
 
     constructor(
@@ -255,24 +242,6 @@ export abstract class BaseInput
 
     protected boolProperty(value: boolean): boolean {
         return coerceBooleanProperty(value);
-    }
-
-    protected lookupValue(item: any): string {
-        if (isSelectItem(item)) {
-            return this.lookupKey && item ? item.value[this.lookupKey] : item.value;
-        } else {
-            return this.lookupKey && item ? item[this.lookupKey] : item;
-        }
-    }
-
-    protected displayValue(item: any): string {
-        if (isSelectItem(item)) {
-            return item.label;
-        } else if (isJsObject(item) && this.displayKey) {
-            return isFunction(item[this.displayKey]) ? item[this.displayKey]() : item[this.displayKey];
-        } else {
-            return item;
-        }
     }
 
     protected input(): HTMLInputElement {

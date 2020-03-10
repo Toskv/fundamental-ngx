@@ -1,0 +1,14 @@
+<form [formGroup]="customForm" class="flex-form">
+    <p>Example 7: Radio Button Group has content of radio buttons</p>
+    <fieldset fd-fieldset>
+        <fdp-radio-group [name]="'radio'" [value]="favoriteSeason" formControlName="example7">
+            <fd-radio-button *ngFor="let season of seasons" [value]="season">
+                {{ season }}
+            </fd-radio-button>
+        </fdp-radio-group>
+    </fieldset>
+</form>
+
+<div>
+    Example 7: {{ customForm.get('example7').value }}
+</div>

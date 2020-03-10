@@ -51,6 +51,12 @@ import { PlatformMenuGroupExampleComponent } from './component-docs/platform-men
 import { PlatformMenuIconsExampleComponent } from './component-docs/platform-menu/platform-menu-examples/platform-menu-icons-example.component';
 import { PlatformMenuClickCloseExampleComponent } from './component-docs/platform-menu/platform-menu-examples/platform-menu-click-close-example.component';
 
+import { PlatformRadioGroupHeaderComponent } from './component-docs/platform-forms/radio-group/platform-radio-group-header/platform-radio-group-header.component';
+import { PlatformRadioGroupListItemsExampleComponent } from './component-docs/platform-forms/radio-group/platform-radio-group-examples/platform-radio-group-list-items-examples.component';
+import { PlatformRadioGroupListExampleComponent } from './component-docs/platform-forms/radio-group/platform-radio-group-examples/platform-radio-group-list-examples.component';
+import { PlatformRadioGroupDocsComponent } from './component-docs/platform-forms/radio-group/platform-radio-group-docs.component';
+import { PlatformRadioGroupContentExampleComponent } from './component-docs/platform-forms/radio-group/platform-radio-group-examples/platform-radio-group-content-examples.component';
+
 import { PlatformSelectDocsComponent } from './component-docs/platform-select/platform-select-docs.component';
 import { PlatformSelectHeaderComponent } from './component-docs/platform-select/platform-select-header/platform-select-header.component';
 import { PlatformSelectTypesDefaultExampleComponent } from './component-docs/platform-select/platform-select-examples/platform-select-types-default-example.component';
@@ -61,10 +67,6 @@ import { StackblitzService } from '../documentation/core-helpers/stackblitz/stac
 import { FundamentalNgxCoreModule } from '@fundamental-ngx/core';
 import { FundamentalNgxPlatformModule } from '@fundamental-ngx/platform';
 
-import { PlatformRadioGroupHeaderComponent } from './component-docs/platform-forms/radio-group/platform-radio-group-header/platform-radio-group-header.component';
-import { PlatformRadioGroupListItemsExampleComponent } from './component-docs/platform-forms/radio-group/platform-radio-group-examples/platform-radio-group-list-items-examples.component';
-import { PlatformRadioGroupListExampleComponent } from './component-docs/platform-forms/radio-group/platform-radio-group-examples/platform-radio-group-list-examples.component';
-import { PlatformRadioGroupDocsComponent } from './component-docs/platform-forms/radio-group/platform-radio-group-docs.component';
 
 @NgModule({
     declarations: [
@@ -114,6 +116,7 @@ import { PlatformRadioGroupDocsComponent } from './component-docs/platform-forms
         PlatformRadioGroupHeaderComponent,
         PlatformRadioGroupListItemsExampleComponent,
         PlatformRadioGroupListExampleComponent,
+        PlatformRadioGroupContentExampleComponent,
         PlatformRadioGroupDocsComponent
     ],
     imports: [

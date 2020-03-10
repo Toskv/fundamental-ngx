@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
-export type stateType = 'valid' | 'invalid' | 'warning' | 'default' | 'information';
 
 @Component({
     selector: 'fdp-platform-radio-group-list-items-example',
